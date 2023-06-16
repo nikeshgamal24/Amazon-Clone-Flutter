@@ -136,7 +136,7 @@ class _AuthScreenState extends State<AuthScreen>{
                   color: GlobalVariables.backgroundColor,
                   child: Form(
                     //using the GolbalKey to generate key in the form 
-                    key: _signUpFormKey,
+                    key: _signInFormKey,
                     child: Column(
                       children: [
                         // we create custom textFormField --> so that we could use validator in the field
