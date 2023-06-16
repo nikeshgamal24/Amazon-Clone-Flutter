@@ -35,29 +35,30 @@ class MyApp extends StatelessWidget {
 
       //generateRoute(settings) --> will check the route and transit to the correct page accordingly that is performed in the router.dart file
       onGenerateRoute: ((settings) => generateRoute(settings)),
-      home:  Scaffold(
-        appBar: AppBar(
-          title:const Center(child: Text('Hello')),
-        ),
-        body:Column(
-          children: [
-            const Center(
-              child: Text('Flutter Demo Home Page')
-              ),
-              Builder(
-                builder: (context) {
-                  return ElevatedButton(
-                    onPressed: (){
-                      // Here the pushNamed takes the context and route name that will be used to select the route among all the routes present in the application
-                      Navigator.pushNamed(context, AuthScreen.routeName);
-                    }, 
-                    child: const Text('Click Here!')
-                  );
-                }
-              ),
-          ],
-        ),
-      ),
+      home:AuthScreen(),  
+      // Scaffold(
+      //   appBar: AppBar(
+      //     title:const Center(child: Text('Hello')),
+      //   ),
+      //   body:Column(
+      //     children: [
+      //       const Center(
+      //         child: Text('Flutter Demo Home Page')
+      //         ),
+      //         Builder(
+      //           builder: (context) {
+      //             return ElevatedButton(
+      //               onPressed: (){
+      //                 // Here the pushNamed takes the context and route name that will be used to select the route among all the routes present in the application
+      //                 Navigator.pushNamed(context, AuthScreen.routeName);
+      //               }, 
+      //               child: const Text('Click Here!')
+      //             );
+      //           }
+      //         ),
+      //     ],
+      //   ),
+      // ),
     );
   }
 }
