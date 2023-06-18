@@ -28,6 +28,13 @@ mongoose.connect(DB).then(() => {
         console.log(e);
     }) // this is a promise
 
+// //connectino to mongofb compass
+// mongoose.connect('mongodb://localhost:27017').then(() => {
+//     console.log('Database connection successfull');
+// }).catch((e) => {
+//     console.log('Database connection fail');
+// })
+
 app.listen(PORT, () => {
     console.log(`Connected at port ${PORT}`)
 });

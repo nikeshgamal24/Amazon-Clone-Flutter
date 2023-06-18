@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
 
       //generateRoute(settings) --> will check the route and transit to the correct page accordingly that is performed in the router.dart file
       onGenerateRoute: ((settings) => generateRoute(settings)),
-      home:AuthScreen(),  
+      home: const AuthScreen(),  
       // Scaffold(
       //   appBar: AppBar(
       //     title:const Center(child: Text('Hello')),

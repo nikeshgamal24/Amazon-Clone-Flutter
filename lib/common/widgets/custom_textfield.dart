@@ -14,9 +14,15 @@ class CustomTextField extends StatelessWidget{
         border: const OutlineInputBorder(
           borderSide: BorderSide(
             color: Colors.black38,
-          )
+          ),
         )
       ),
+      validator:(value){
+        if(value == null || value.isEmpty){
+          return 'Enter your $hintText'; // if any error
+        }
+        return null; // if no error
+      },
     );
   }
 }
