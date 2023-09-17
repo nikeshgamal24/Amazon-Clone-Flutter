@@ -24,7 +24,7 @@ class AuthScreen extends StatefulWidget{
 
 class _AuthScreenState extends State<AuthScreen>{
    Auth _auth = Auth.signup;
-
+ 
    //form is used to get the current state of the field that is used to validate the input for form validation
    final _signUpFormKey = GlobalKey<FormState>();
    final _signInFormKey = GlobalKey<FormState>();

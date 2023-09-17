@@ -1,8 +1,9 @@
 import 'dart:convert';
 
+import 'package:amazon_clone_flutter/common/widgets/bottom_bar.dart';
 import 'package:amazon_clone_flutter/constants/error_handling.dart';
 import 'package:amazon_clone_flutter/constants/utils.dart';
-import 'package:amazon_clone_flutter/features/auth/home/screens/home_screen.dart';
+// import 'package:amazon_clone_flutter/features/auth/home/screens/home_screen.dart';
 import 'package:amazon_clone_flutter/providers/user_provider.dart';
 import 'package:flutter/material.dart';
 
@@ -73,7 +74,7 @@ class AuthService{
   })async{
     try {
       //post requrest and return response so need to pass in the form of json for which we pass it my headers
-
+       print("----------Now time to http request---------");
       // we are sending the data 
       http.Response res =  await http.post(
         Uri.parse('$uri/api/signin'), 
@@ -105,7 +106,8 @@ class AuthService{
             Provider.of<UserProvider>(context,listen: false).setUser(res.body);
             //set the data i.e. token 
             await prefs.setString('x-auth-token', jsonDecode(res.body)["token"]);
-            Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
+            // Navigator.pushNamedAndRemoveUntil(context, HomeScreen.routeName, (route) => false);
+            Navigator.pushNamedAndRemoveUntil(context, BottomBar.routeName, (route) => false);
               print('setting navigator');
 
           },
@@ -153,7 +155,7 @@ class AuthService{
 
         // print("token response after http post apit hit");
         var response = jsonDecode(tokenRes.body);  //will provide true or false
-        // print("tokenRes: $response");
+        print("tokenRes: $response");
 
         if(response == true ){
           //get the user data  for that we need another api
@@ -170,11 +172,8 @@ class AuthService{
           var userProvider = Provider.of<UserProvider>(context,listen: false);
           userProvider.setUser(userRes.body);
         }
-
     } catch (e){
       showSnackBar(context,e.toString());
     }
   }
-
-
 }

@@ -1,4 +1,9 @@
+import 'package:amazon_clone_flutter/constants/global_variables.dart';
 import 'package:amazon_clone_flutter/constants/utils.dart';
+import 'package:amazon_clone_flutter/features/auth/home/widgets/address_box.dart';
+import 'package:amazon_clone_flutter/features/auth/home/widgets/carousel_image.dart';
+import 'package:amazon_clone_flutter/features/auth/home/widgets/deal_of_day.dart';
+import 'package:amazon_clone_flutter/features/auth/home/widgets/top_categorys.dart';
 import 'package:amazon_clone_flutter/features/auth/screens/auth_screen.dart';
 import 'package:amazon_clone_flutter/providers/user_provider.dart';
 import 'package:flutter/material.dart';
@@ -14,41 +19,104 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  Widget build(BuildContext context) {
   @override
-  final user = Provider.of<UserProvider>(context).user;
+  Widget build(BuildContext context) {
+    // final user = Provider.of<UserProvider>(context).user;
 
-    return  Scaffold(
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            const Center(
-              child: Text("Welcome to Home Screen",
-              style: TextStyle(
-                fontSize: 24,
-              ),),
+    return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: AppBar(
+          //reason to use the flexiblespace is that we want to have the linear Gradient to the AppBar but AppBar doesnot have the property lineargradiend so we use flexibleSpace
+          flexibleSpace: Container(
+            decoration: const BoxDecoration(
+              gradient: GlobalVariables.appBarGradient,
             ),
-            ElevatedButton(
-              onPressed: () async{
-                try{
-                  SharedPreferences prefs = await SharedPreferences.getInstance();
-                  await prefs.setString("x-auth-token", '');
-                  Navigator.pushNamedAndRemoveUntil(context, AuthScreen.routeName, (route) => false);
-                }catch(err){
-                  showSnackBar(context, err.toString());
-                }
-              }, 
-              child:const Text(
-                "Logout",
-                style: TextStyle(
-                  fontSize: 19,
-                  color: Colors.white,
+          ),
+          title: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                child: Container(
+                  height: 42,
+                  margin: const EdgeInsets.only(
+                    left: 15,
+                  ),
+                  child: Material(
+                    borderRadius: BorderRadius.circular(7),
+                    elevation: 1,
+                    child: TextFormField(
+                      decoration: InputDecoration(
+                          prefixIcon: InkWell(
+                            onTap: () {},
+                            child: const Padding(
+                              padding: EdgeInsets.only(
+                                left: 6,
+                              ),
+                              child: Icon(
+                                Icons.search,
+                                color: Colors.black,
+                                size: 23,
+                              ),
+                            ),
+                          ),
+                          filled: true,
+                          fillColor: Colors.white,
+                          contentPadding: const EdgeInsets.only(
+                            top: 10,
+                          ),
+                          border: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(7),
+                            ),
+                            borderSide: BorderSide.none,
+                          ),
+                          enabledBorder: const OutlineInputBorder(
+                            borderRadius: BorderRadius.all(
+                              Radius.circular(7),
+                            ),
+                            borderSide: BorderSide(
+                              color: Colors.black38,
+                              width: 1,
+                            ),
+                          ),
+                          hintText: 'Search Amazon.in',
+                          hintStyle: const TextStyle(
+                            fontWeight: FontWeight.w500,
+                            fontSize: 17,
+                          )),
+                    ),
+                  ),
                 ),
+              ),
+              Container(
+                color: Colors.transparent,
+                height: 42,
+                margin: const EdgeInsets.symmetric(horizontal: 10),
+                child: const Icon(
+                  Icons.mic,
+                  color: Colors.black,
+                  size: 25,
                 ),
               )
+            ],
+          ),
+        ),
+      ),
+      body:const SingleChildScrollView(
+        child: Column(
+          children: [
+            //1st child is address box
+             AddressBox(),
+             SizedBox(height: 10,),
+             //categories
+             TopCategories(),
+             SizedBox(height: 10,),
+             CarouselImage(),
+             DealOfDay(),
           ],
-        ),      
+        ),
+      ),
     );
   }
 }
