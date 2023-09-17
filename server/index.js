@@ -12,6 +12,7 @@ const DB = "mongodb+srv://nikeshgamal:nikeshgamal123@cluster0.bjeclqb.mongodb.ne
 //why do we need to import from other files 
 //--> our entry point is index.js so if we don't then the existence will not be known of other file and program control will not pass to other file 
 const authRouter = require('./routes/auth');
+const adminRouter = require('./routes/admin');
 
 //middleware  --> in node its all about the middle ware between the reqquest and response
 
@@ -19,6 +20,8 @@ const authRouter = require('./routes/auth');
 // if we want to manipulate the information the data that is send by the some person
 app.use(express.json());
 app.use(authRouter); // register router --> authRouter is known to the node now
+app.use(adminRouter);
+
 
 //for the connection
 // need to pass url to connect

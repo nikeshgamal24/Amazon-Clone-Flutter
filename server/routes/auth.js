@@ -163,10 +163,18 @@ authRouter.post("/tokenIsValid", async(req, res) => {
 
 //get user data 
 authRouter.get('/', auth, async(req, res) => {
-    console.log("inside get-->/ route ")
-    console.log(req.user);
-    const user = await User.findById(req.user);
-    res.json({...user._doc, token: req.token });
+    try {
+        console.log("inside get-->/ route ")
+        console.log(req.user);
+        const user = await User.findById(req.user);
+        res.json({...user._doc, token: req.token });
+    } catch (error) {
+        return res.status(400).json({
+            status: "Bad Request",
+            message: error.message,
+        });
+    }
+
 })
 
 module.exports = authRouter;

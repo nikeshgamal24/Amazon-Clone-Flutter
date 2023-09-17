@@ -19,8 +19,8 @@ const auth = async(req, res, next) => {
 
         req.user = verified.id;
         req.token = token;
-        console.log(`req.user:${req.user}`);
-        console.log(`req.token:${req.token}`);
+        // console.log(`req.user:${req.user}`);
+        // console.log(`req.token:${req.token}`);
         next(); //call next callback function
 
     } catch (error) {
