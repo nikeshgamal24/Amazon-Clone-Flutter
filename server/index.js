@@ -13,6 +13,7 @@ const DB = "mongodb+srv://nikeshgamal:nikeshgamal123@cluster0.bjeclqb.mongodb.ne
 //--> our entry point is index.js so if we don't then the existence will not be known of other file and program control will not pass to other file 
 const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');
+const productRouter = require('./routes/product');
 
 //middleware  --> in node its all about the middle ware between the reqquest and response
 
@@ -21,6 +22,7 @@ const adminRouter = require('./routes/admin');
 app.use(express.json());
 app.use(authRouter); // register router --> authRouter is known to the node now
 app.use(adminRouter);
+app.use(productRouter);
 
 
 //for the connection
