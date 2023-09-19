@@ -33,6 +33,7 @@ class AuthService{
         address: '', 
         type: '', 
         token: '',
+        cart: [],
         );
 
       //post requrest and return response so need to pass in the form of json for which we pass it my headers

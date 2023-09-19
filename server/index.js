@@ -14,6 +14,7 @@ const DB = "mongodb+srv://nikeshgamal:nikeshgamal123@cluster0.bjeclqb.mongodb.ne
 const authRouter = require('./routes/auth');
 const adminRouter = require('./routes/admin');
 const productRouter = require('./routes/product');
+const userRouter = require('./routes/user');
 
 //middleware  --> in node its all about the middle ware between the reqquest and response
 
@@ -23,6 +24,7 @@ app.use(express.json());
 app.use(authRouter); // register router --> authRouter is known to the node now
 app.use(adminRouter);
 app.use(productRouter);
+app.use(userRouter);
 
 
 //for the connection

@@ -10,6 +10,7 @@ class UserProvider extends ChangeNotifier{
       address:'',
       type: '',
       token:'',
+      cart: [],
   );
 
 //this is a getter
@@ -21,5 +22,10 @@ class UserProvider extends ChangeNotifier{
     print("Inside User provider");
     print("_user: $_user");
     notifyListeners(); // rebuild
+  }
+
+  void setUserFromModel(User user){
+    _user = user;
+    notifyListeners();
   }
 }
